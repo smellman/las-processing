@@ -34,5 +34,12 @@ docker run -u `id -u`:`id -g` -v $(pwd):/work --rm las-processing lasinfo64 /wor
 ### py3dtiles
 
 ```bash
-docker run -u `id -u`:`id -g` -v $(pwd):/work --rm pdal-py3dtiles py3dtiles convert --pyproj-always-xy --out /work/3dtiles --srs_out 4978 /work/merged-lasmerge.las
+docker run -e NUMBA_CACHE_DIR=/tmp/numba_cache -u `id -u`:`id -g` -v $(pwd):/work -v --rm las-processing py3dtiles convert --pyproj-always-xy --out /work/3dtiles --srs_out 4978 /work/merged.las
+```
+
+### bash
+
+```bash
+docker run -u `id -u`:`id -g` -v $(pwd):/work --rm /bin/bash
+lasmarge64 -i foo/*.laz -o foo.laz
 ```
